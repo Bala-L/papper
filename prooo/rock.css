@@ -1,0 +1,10 @@
+.img{
+    width: 100px !important;
+    height: 100px !important;
+    object-fit: scale-down !important;
+}
+.btn{
+   padding: -50px;
+   margin: -50px !important;
+
+}
