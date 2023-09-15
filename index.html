@@ -4,50 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./bootstrap-5.3.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./rock.css ">
     <title>Document</title>
   </head>
-<body>
-    
-    <h1><span class=ro>Rock</span><span class=pa>Paper</span><span class=sis>secssior</span></h1>
-    <div style="display:flex; padding: 20px;gap: 60px;">
+  <body>
+    <div class="container">
+     <h1 class="d-flex justify-content-center gap-2">ROCK  <span>PAPER</span>  <span style=>SCISSORS</span></h1>
+    <div style="display: flex;flex-direction: column;gap:5px;"class="m-5">
+      <p><span class="dis">User:</span><span class="use sp" id="use"></span></p>
+      <p > <span class="dis">Computer:</span><span class="com sp" id="com"></span></p>
+      <p > <span class="dis">Result:</span><span class="res sp" id="result"></span></p>
+      <p > <span class="dis" >score:</span><span class="score " id="score"></span></p>
+      
+       
+        <button id="reset" class="w-25" onclick="reset()">RESET</button>
+      </div> 
+    <div style="display:flex; padding: 20px;gap: 100px;justify-content: center; " class="row" >
     <!-- <button  class="btn w-25 "  id="rock"> -->
-      <img class="img-fulid " width="200" onclick="user('paper')" id="paper" src="./image/paper.jpeg">
-    <img class="img-fulid" onclick="user('rock')" width="200" src="./image/rock.jpeg">
-    <img class="img-fulid" width="200" onclick="user('secissor')" src="./image/secssior.jpeg">
+
+      <img class="img-fulid w-25" class="col-md-4 " onclick="user('rock')"src="./image/rock.jpeg">
+      <img class="img-fulid w-25" class="col-md-4"  onclick="user('paper')"  src="./image/paper.jpeg">
+    <img class="img-fulid w-25" class="col-md-4"  onclick="user('scissors')" src="./image/scissors.jpeg">
     
     </div>
-<p>User:<span class="use" id="use"></span></p>
-<p>Computer:<span class="com" id="com"></span></p>
-<p>Result:<span class="res" id="result"></span></p>
-
+    
+</div>
 <script>
+  let result=document.getElementById("result")
+  let usera=document.getElementById("use")
+  let computer=document.getElementById("com")
+  let scoreShow=0;
+  let score=document.getElementById("score")
+  score.innerHTML=scoreShow;
 function Computer(){
-let co=["rock","paper","secssior"]
-let b=Math.floor(Math.random()*3)
-return co[b];
+  let computerChoice=["rock","paper","scissors"]
+  let b=Math.floor(Math.random()*3)
+  return computerChoice[b];
+}
+function user(userChoice){
+  usera.innerHTML=userChoice;
+  computer.innerHTML=Computer();
+  switch(userChoice+" "+Computer()){
+  case "rock scissors":
+  case "paper rock":
+  case "scissors paper":
+    let abc=result.innerHTML="User Win"
+    if(abc){
+      scoreShow++
+      score.innerHTML=`${scoreShow}`
+    }
+  break;
+  case  "scissors rock":
+  case  "paper scissors":
+  case  "rock paper":
+       result.innerHTML="Computer Win"
+  break;
+  case  "rock rock":
+  case  "paper paper":
+  case  "scissors scissors":
+        result.innerHTML="Match Draw"
+     }
+}
+function reset(){
+usera.innerHTML=" "
+computer.innerHTML=" "
+result.innerHTML=" "
+score.innerHTML='0'
+scoreShow=0;
+}
 
-}
-function user(aa){
-  document.getElementById("use").innerHTML=aa;
-  let cc=Computer();
-  document.getElementById("com").innerHTML=cc;
-  switch(aa+" "+cc){
-    case "rock secssior":
-    case "paper rock":
-    case "secssior paper":
-   document.getElementById("result").innerHTML="User Won";
- break;
-    case "secssior rock":
-    case "paper secssior":
-    case "rock paper":
-   document.getElementById("result").innerHTML="Computer Won";
- break;
-    case "secssior secssior":
-    case "paper paper":
-    case "rock rock":
-   document.getElementById("result").innerHTML="Match Draw" ;
-  }
-}
+
+// (async function fetchData(){
+// const res= await fetch('https://dummyjson.com/products/1');
+// const data = await res.json()
+// console.log(data)
+// localStorage.setItem("data",JSON.stringify(data))
+// })()
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 
